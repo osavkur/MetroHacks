@@ -38,6 +38,5 @@ with tf.Session() as sess:
         endvalue = '%s (score = %.5f)' % (human_string, score)
         
     with open("C:\\Users\\yuval\\Documents\\emotions.csv") as csvfile:
-        global endvalue
         filewriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
         filewriter.writerow(['endvalue'])
