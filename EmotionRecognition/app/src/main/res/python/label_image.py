@@ -39,4 +39,4 @@ with tf.Session() as sess:
         
     with open("C:\\Users\\yuval\\Documents\\emotions.csv") as csvfile:
         filewriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
-        filewriter.writerow(['endvalue'])
+        filewriter.writerow([str(endvalue)])
