@@ -29,7 +29,7 @@ public class ProcessPhoto extends AppCompatActivity {
 
     public static void main(String a[]){
         try{
-            String pythonScript = "label_image.py";
+            String pythonScript = "C:\\Users\\Omkar\\AppData\\Local\\Programs\\Python\\Python35\\label_image.py";
             ProcessBuilder pb = new ProcessBuilder("python", pythonScript);
             Process p = pb.start();
             BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
