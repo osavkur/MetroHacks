@@ -3,7 +3,8 @@ import os, sys
 import tensorflow as tf
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-PUBLIC endvalue
+
+global endvalue
 endvalue = "Hi"
 # change this as you see fit
 image_path = sys.argv[1]
@@ -32,12 +33,11 @@ with tf.Session() as sess:
     top_k = predictions[0].argsort()[-len(predictions[0]):][::-1]
     
     for node_id in top_k:
-        PUBLIC endvalue
         human_string = label_lines[node_id]
         score = predictions[0][node_id]
         endvalue = '%s (score = %.5f)' % (human_string, score)
         
     with open("C:\\Users\\yuval\\Documents\\emotions.csv") as csvfile:
+        global endvalue
         filewriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
         filewriter.writerow(['endvalue'])
-    
