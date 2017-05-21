@@ -16,7 +16,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -42,6 +44,20 @@ public class TakePhoto extends AppCompatActivity {
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             mImageView.setImageBitmap(imageBitmap);
 
+            /**
+            String filename = "photo.png";
+            File sd = Environment.getExternalStorageDirectory();
+            File dest = new File(sd, filename);
+
+            Bitmap bitmap = (Bitmap)data.getExtras().get("data");
+            try {
+                FileOutputStream out = new FileOutputStream(dest);
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+                out.flush();
+                out.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }*/
             Intent intent = new Intent(this, ProcessPhoto.class);
             intent.putExtra("Photo", imageBitmap);
             startActivity(intent);
@@ -73,6 +89,7 @@ public class TakePhoto extends AppCompatActivity {
         mCurrentPhotoPath = image.getAbsolutePath();
         return image;
     }
+
 
 }
 
