@@ -4,10 +4,11 @@ import tensorflow as tf
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-global name
 global confidence
-name = "Hi"
-confidence = 0
+global name
+global output_array
+output_array = []
+endvalue = "Hi"
 # change this as you see fit
 image_path = sys.argv[1]
 
@@ -39,6 +40,10 @@ with tf.Session() as sess:
         score = predictions[0][node_id]
         name = human_string
         confidence = '(score = %.5f)' % (score)
-        with open("C:\\Users\\yuval\\Documents\\emotions.csv") as csvfile:
-          filewriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
-          filewriter.writerow([name, str(confidence)])
+        output_array = output_array.extend([name, str(confidence)])
+        name = ""
+        confidence = 0
+        with open("C:\\Users\\omkar\\Documents\\TempCSV.csv", "w") as csvfile:
+            global endvalue
+            filewriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+            filewriter.writerow([output_array[node_id]])
