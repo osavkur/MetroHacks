@@ -44,4 +44,3 @@ with tf.Session() as sess:
     with open("C:\\Users\\Omkar\\Documents\\TempCSV.csv", "w", newline='\n') as csvfile:
         filewriter = csv.writer(csvfile, delimiter=',', quotechar=' ', quoting=csv.QUOTE_NONE, escapechar='\\')
         filewriter.writerow(masterList)
-print(masterList)
