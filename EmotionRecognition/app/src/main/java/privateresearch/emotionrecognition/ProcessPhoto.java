@@ -10,6 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
 import com.kbeanie.multipicker.api.ImagePicker;
@@ -23,6 +24,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 
+import com.kbeanie.multipicker.api.CameraImagePicker;
+import com.kbeanie.multipicker.api.ImagePicker;
+import com.kbeanie.multipicker.api.Picker;
+import com.kbeanie.multipicker.api.callbacks.ImagePickerCallback;
+import com.kbeanie.multipicker.api.entity.ChosenImage;
+
+import static android.R.id.message;
+
 public class ProcessPhoto extends AppCompatActivity {
 
     private ImageSwitcher imageSwitcher;
@@ -33,15 +42,6 @@ public class ProcessPhoto extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_process_photo);
 
-        /**
-        @Override
-        public void onImagesChosen(List<ChosenImage> images) {
-            // Display Images
-        }
-        @Override
-        public void onError(String message) {
-            // Handle error
-        }**/
 
         imageSwitcher = (ImageSwitcher)findViewById(R.id.imageSwitcher1);
         imageSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
@@ -54,6 +54,18 @@ public class ProcessPhoto extends AppCompatActivity {
 
 //        imageSwitcher.setImageResource(image);
     }
+
+
+    public void onImagesChosen(List<ChosenImage> images) {
+        // Display Images
+        Toast toast = Toast.makeText(getApplicationContext(), "Toast!", Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+    public void onError(String message) {
+        // Handle error
+    }
+
 
     /**
     private void handleMultipleShares() {

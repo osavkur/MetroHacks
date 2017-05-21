@@ -2,6 +2,7 @@ package privateresearch.emotionrecognition;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -55,8 +56,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /*
         Toast toast = Toast.makeText(getApplicationContext(), "Toast!", Toast.LENGTH_SHORT);
-        toast.show();
+        toast.show();*/
     }
 
     /** Called when the user presses the "Use Camera" button **/
@@ -74,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
         }*/
         checkCameraPermission();
 
+        openApp(this, "org.tensorflow.demo");
+        /**
         CameraImagePicker imagePicker2 = new CameraImagePicker(this);
         imagePicker2.setImagePickerCallback(new ImagePickerCallback(){
             @Override
@@ -85,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             public void onError(String message) {
                 // Do error handling
             }}
-        );
+        );**/
 // imagePicker.shouldGenerateMetadata(false); // Default is true
 // imagePicker.shouldGenerateThumbnails(false); // Default is true
         outputPath = imagePicker2.pickImage();
@@ -148,6 +152,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    public static void openApp(Context context, String packageName) {
+        PackageManager manager = context.getPackageManager();
+
+            Intent i = manager.getLaunchIntentForPackage(packageName);
+            i.addCategory(Intent.CATEGORY_LAUNCHER);
+            context.startActivity(i);
+
+        }
 
 
 
