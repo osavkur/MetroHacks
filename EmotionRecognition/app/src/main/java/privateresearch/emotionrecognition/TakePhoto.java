@@ -41,40 +41,22 @@ public class TakePhoto extends AppCompatActivity {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             mImageView.setImageBitmap(imageBitmap);
+
+            Intent intent = new Intent(this, ProcessPhoto.class);
+            intent.putExtra("Photo", imageBitmap);
+            startActivity(intent);
         }
     }
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             // Create the File where the photo should go
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException ex) {
-                // Error occurred while creating the File
-//                Intent intent2 = new Intent(this, ExpectedError.class);
-//                startActivity(intent2);
-            }
-            // Continue only if the File was successfully created
-            if (photoFile != null) {
-
-                // THIS LINE POOPS ITSELF
-                Uri photoURI = FileProvider.getUriForFile(this,
-                        "com.example.android.fileprovider",
-                        photoFile);
-
-                /**} catch (NullPointerException ex) {
-                    Intent intent2 = new Intent(this, ExpectedError.class);
-                    startActivity(intent2);
-                }**/
-
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
 
 
             }
         }
-    }
+
 
     private File createImageFile() throws IOException {
         // Create an image file name
@@ -91,5 +73,6 @@ public class TakePhoto extends AppCompatActivity {
         mCurrentPhotoPath = image.getAbsolutePath();
         return image;
     }
+
 }
 

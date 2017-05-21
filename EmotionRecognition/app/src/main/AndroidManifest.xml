@@ -8,11 +8,7 @@
         android:maxSdkVersion="18" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-
-    <uses-feature
-        android:name="android.hardware.camera2"
-        android:required="false" />
-
+    <uses-feature android:name="android.hardware.camera2" />
 
     <provider
         android:name="android.support.v4.content.FileProvider"
@@ -23,7 +19,6 @@
             android:name="android.support.FILE_PROVIDER_PATHS"
             android:resource="@xml/file_paths" />
     </provider>
-
 
     <application
         android:allowBackup="true"
@@ -44,7 +39,8 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_take_photo"
             android:theme="@style/FullscreenTheme" />
-        <activity android:name=".ExpectedError"></activity>
+        <activity android:name=".ExpectedError" />
+        <activity android:name=".ProcessPhoto"></activity>
     </application>
 
 </manifest>
