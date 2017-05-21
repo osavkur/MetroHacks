@@ -3,12 +3,11 @@ import csv
 import tensorflow as tf
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-
-global confidence
+masterList = []
 global name
-global output_array
-output_array = []
-endvalue = "Hi"
+global confidence
+name = "Hi"
+confidence = 0
 # change this as you see fit
 image_path = sys.argv[1]
 
@@ -39,11 +38,10 @@ with tf.Session() as sess:
         human_string = label_lines[node_id]
         score = predictions[0][node_id]
         name = human_string
-        confidence = '(score = %.5f)' % (score)
-        output_array = output_array.extend([name, str(confidence)])
-        name = ""
-        confidence = 0
-        with open("C:\\Users\\omkar\\Documents\\TempCSV.csv", "w") as csvfile:
-            global endvalue
-            filewriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
-            filewriter.writerow([output_array[node_id]])
+        confidence = 'score=%.5f' % (score)
+        masterList.append(name)
+        masterList.append(str(confidence))
+    with open("C:\\Users\\Omkar\\Documents\\TempCSV.csv", "w", newline='\n') as csvfile:
+        filewriter = csv.writer(csvfile, delimiter=',', quotechar=' ', quoting=csv.QUOTE_NONE, escapechar='\\')
+        filewriter.writerow(masterList)
+print(masterList)
